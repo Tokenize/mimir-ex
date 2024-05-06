@@ -12,6 +12,53 @@
     </script>
   </head>
   <body class="bg-white antialiased">
+    <div class="flex items-center justify-between px-4 py-3 bg-cyan-900 text-gray-100 md:text-lg shadow-md shadow-gray-300">
+      <div class="hover:text-gray-300 font-semibold">
+        <a href="/">Mimir</a>
+      </div>
+
+      <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
+        <%= if @current_user do %>
+          <li class="leading-6 mr-3 text-base">
+            [ <%= @current_user.email %> ]
+          </li>
+          <li>
+            <.link
+            href={~p"/users/settings"}
+            class="text-base leading-6 font-semibold hover:text-gray-300"
+            >
+            Settings
+            </.link>
+          </li>
+          <li>
+            <.link
+            href={~p"/users/log_out"}
+            method="delete"
+            class="text-base leading-6 font-semibold hover:text-gray-300"
+            >
+            Log out
+            </.link>
+          </li>
+        <% else %>
+          <li>
+            <.link
+            href={~p"/users/register"}
+            class="text-base leading-6 font-semibold hover:text-gray-300"
+            >
+            Register
+            </.link>
+          </li>
+          <li>
+            <.link
+            href={~p"/users/log_in"}
+            class="text-base leading-6 font-semibold hover:text-gray-300"
+            >
+            Log in
+            </.link>
+          </li>
+        <% end %>
+      </ul>
+    </div>
     <%= @inner_content %>
   </body>
 </html>
